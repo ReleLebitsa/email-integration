@@ -5,7 +5,7 @@ $( '.js-input' ).keyup(function() {
        $(this).removeClass('not-empty');
     }
   });
-
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
 			document
 				.getElementById("contact-form")
@@ -14,11 +14,8 @@ $( '.js-input' ).keyup(function() {
 					emailjs.sendForm("service_umjc10x", "template_4p81ygf", this).then(
 						function (response) {
 							console.log("Email sent!", response.status, response.text);
-							document.getElementById("email_id").value = "";
-							document.getElementById("animal").value = "";
-							document.getElementById("size").value = "";
-							document.getElementById("date").value = "";
-							document.getElementById("package").value = "";
+							document.getElementById("name").value = "";
+							document.getElementById("email").value = "";
 							document.getElementById("message").value = "";
 
 							alert("Email sent successfully!");
