@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="pw.css">
     <style>
         /* Girlie CSS */
-       
     </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
     <nav>
@@ -94,7 +94,7 @@
 
     <section class="get-in-touch" id="contact">
         <h1 class="title">Contact Me</h1>
-        <form class="contact-form row">
+        <form class="contact-form row" id="contact-form">
            <div class="form-field col x-50">
               <input id="name" class="input-text js-input" type="text" required>
               <label class="label" for="name">Name</label>
@@ -139,6 +139,28 @@
                 document.querySelector('nav ul').classList.remove('active'); // Close the navigation
             });
         });
+
+        emailjs.init("your_user_id"); //  user ID here
+
+        document
+            .getElementById("contact-form")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+                emailjs.sendForm("service_umjc10x", "template_4p81ygf", this).then(
+                    function (response) {
+                        console.log("Email sent!", response.status, response.text);
+                        document.getElementById("name").value = "";
+                        document.getElementById("email").value = "";
+                        document.getElementById("message").value = "";
+
+                        alert("Email sent successfully!");
+                    },
+                    function (error) {
+                        console.error("Error sending email:", error);
+                        alert("Failed to send email. Please try again later.");
+                    }
+                );
+            });
     </script>
 </body>
 </html>
