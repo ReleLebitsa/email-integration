@@ -1,29 +1,12 @@
-$( '.js-input' ).keyup(function() {
-    if( $(this).val() ) {
-       $(this).addClass('not-empty');
-    } else {
-       $(this).removeClass('not-empty');
+function sendMail() {
+    var params = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
     }
-  });
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-			document
-				.getElementById("contact-form")
-				.addEventListener("submit", function (event) {
-					event.preventDefault();
-					emailjs.sendForm("service_umjc10x", "template_4p81ygf", this).then(
-						function (response) {
-							console.log("Email sent!", response.status, response.text);
-							document.getElementById("name").value = "";
-							document.getElementById("email").value = "";
-							document.getElementById("message").value = "";
-
-							alert("Email sent successfully!");
-						},
-						function (error) {
-							console.error("Error sending email:", error);
-							
-						}
-					);
-				});
-		</script>
+    emailjs.send("service_hloylei", "template_xk5ozza", params).then((res) => {
+        console.log(res);
+        alert("Your message was sent successfully")
+    })
+    .catch(err => console.log("error"))
+}
